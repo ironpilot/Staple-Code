@@ -48,7 +48,7 @@ defined('SCRIPT_ROOT')
 defined('STAPLE_ROOT')
 || define('STAPLE_ROOT',LIBRARY_ROOT . 'Staple/');
 
-require_once '..' . DIRECTORY_SEPARATOR . 'vendor' . DIRECTORY_SEPARATOR. 'autoload.php';
+require_once __DIR__.'..' . DIRECTORY_SEPARATOR . 'vendor' . DIRECTORY_SEPARATOR. 'autoload.php';
 
 //Staple AutoLoader
 $loader = new \Staple\Autoload(false);
