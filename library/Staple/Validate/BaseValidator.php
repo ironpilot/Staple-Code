@@ -23,6 +23,8 @@
 
 namespace Staple\Validate;
 
+require_once 'IValidator.php';
+
 abstract class BaseValidator implements iValidator
 {
 	/**
