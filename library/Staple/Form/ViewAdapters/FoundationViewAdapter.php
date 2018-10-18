@@ -184,7 +184,7 @@ class FoundationViewAdapter extends ElementViewAdapter
 		return $buf;
 	}
 
-	public function CheckboxgroupElement(CheckboxGroupElement $field)
+	public function CheckboxGroupElement(CheckboxGroupElement $field)
 	{
 		$buf = "<div class=\"row\">\n"; //Row Start
 		$buf .= "\t<div class=\"small-12 columns\">\n"; //Label Start

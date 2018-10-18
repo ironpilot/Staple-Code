@@ -44,5 +44,3 @@ class IntegerFilter extends FieldFilter
 	}
 
 }
-
-?>

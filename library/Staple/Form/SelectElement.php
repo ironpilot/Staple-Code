@@ -93,6 +93,7 @@ class SelectElement extends FieldElement
 	 * Sets the value for the select box
 	 * @param mixed $val
 	 * @return static
+	 * @throws Exception
 	 */
 	public function setValue($val)
 	{
@@ -129,7 +130,7 @@ class SelectElement extends FieldElement
 	 * @throws Exception
 	 * @return $this
 	 */
-	public function addOption($value,$label = NULL)
+	public function addOption($value, $label = NULL)
 	{
 		if(is_array($value) || is_resource($value))
 		{
@@ -155,11 +156,11 @@ class SelectElement extends FieldElement
 	 * options.
 	 * 
 	 * @param array $options
-	 * @param boolean $labelvalues
+	 * @param boolean $labelValues
 	 * @throws Exception
 	 * @return $this
 	 */
-	public function addOptionsArray(array $options, $labelvalues = FALSE)
+	public function addOptionsArray(array $options, $labelValues = FALSE)
 	{
 		foreach($options as $value=>$label)
 		{
@@ -169,7 +170,7 @@ class SelectElement extends FieldElement
 			}
 			else
 			{
-				if($labelvalues === true)
+				if($labelValues === true)
 				{
 					$this->options[$label] = $label;
 				}

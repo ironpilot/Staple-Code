@@ -53,5 +53,3 @@ class PhoneFormatFilter extends FieldFilter
 	}
 
 }
-
-?>

@@ -40,7 +40,7 @@ use Staple\Form\TextElement;
 
 class BootstrapViewAdapter extends ElementViewAdapter
 {
-	function TextElement(TextElement $field)
+	public function TextElement(TextElement $field)
 	{
 		//Add form-control class for optimal element positioning.
 		$field->addClass('form-control');
@@ -96,7 +96,7 @@ class BootstrapViewAdapter extends ElementViewAdapter
 		return $buf;
 	}
 
-	function TextareaElement(TextareaElement $field)
+	public function TextareaElement(TextareaElement $field)
 	{
 		//Add form-control class for optimal element positioning.
 		$field->addClass('form-control');
@@ -152,7 +152,7 @@ class BootstrapViewAdapter extends ElementViewAdapter
 		return $buf;
 	}
 
-	function PasswordElement(PasswordElement $field)
+	public function PasswordElement(PasswordElement $field)
 	{
 		//Add form-control class for optimal element positioning.
 		$field->addClass('form-control');
@@ -208,7 +208,7 @@ class BootstrapViewAdapter extends ElementViewAdapter
 		return $buf;
 	}
 
-	function HiddenElement(HiddenElement $field)
+	public function HiddenElement(HiddenElement $field)
 	{
 		$field->addClass('form-control');
 		$buf = "<div class=\"form-group\">\n"; //Start Form-Group
@@ -217,7 +217,7 @@ class BootstrapViewAdapter extends ElementViewAdapter
 		return $buf;
 	}
 
-	function SelectElement(SelectElement $field)
+	public function SelectElement(SelectElement $field)
 	{
 		//Add form-control class for optimal element positioning.
 		$field->addClass('form-control');
@@ -273,7 +273,7 @@ class BootstrapViewAdapter extends ElementViewAdapter
 		return $buf;
 	}
 
-	function CheckboxgroupElement(CheckboxGroupElement $field)
+	public function CheckboxGroupElement(CheckboxGroupElement $field)
 	{
 		//Add form-control class for optimal element positioning.
 		$field->addClass('form-control');
@@ -329,7 +329,7 @@ class BootstrapViewAdapter extends ElementViewAdapter
 		return $buf;
 	}
 
-	function CheckboxElement(CheckboxElement $field)
+	public function CheckboxElement(CheckboxElement $field)
 	{
 		//Build field buffer to be returned.
 		if (count($field->getErrors()) > 0)
@@ -381,7 +381,7 @@ class BootstrapViewAdapter extends ElementViewAdapter
 		return $buf;
 	}
 
-	function RadioElement(RadioElement $field)
+	public function RadioElement(RadioElement $field)
 	{
 		//Build field buffer to be returned.
 		if (count($field->getErrors()) > 0)
@@ -434,7 +434,7 @@ class BootstrapViewAdapter extends ElementViewAdapter
 		return $buf;
 	}
 
-	function FileElement(FileElement $field)
+	public function FileElement(FileElement $field)
 	{
 		//Add form-control class for optimal element positioning.
 		$field->addClass('form-control');
@@ -490,7 +490,7 @@ class BootstrapViewAdapter extends ElementViewAdapter
 		return $buf;
 	}
 
-	function SubmitElement(SubmitElement $field)
+	public function SubmitElement(SubmitElement $field)
 	{
 		$field->addClass('btn');
 		$buf = "<div class=\"form-group\">\n"; //Start Form-Group
@@ -499,7 +499,7 @@ class BootstrapViewAdapter extends ElementViewAdapter
 		return $buf;
 	}
 
-	function ButtonElement(ButtonElement $field)
+	public function ButtonElement(ButtonElement $field)
 	{
 		$field->addClass('btn');
 		$buf = "<div class=\"form-group\">\n"; //Start Form-Group
@@ -508,7 +508,7 @@ class BootstrapViewAdapter extends ElementViewAdapter
 		return $buf;
 	}
 
-	function ImageElement(ImageElement $field)
+	public function ImageElement(ImageElement $field)
 	{
 		//Add form-control class for optimal element positioning.
 		$field->addClass('form-control');
