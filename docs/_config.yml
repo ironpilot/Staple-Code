@@ -64,3 +64,10 @@ repos:
 cta:
   main: "An Open Source PHP Framework"
   secondary:
+
+defaults:
+  - scope:
+      path: ""
+      type: "posts"
+    values:
+      layout: "document"

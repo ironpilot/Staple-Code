@@ -10,6 +10,7 @@ namespace Staple\Tests;
 
 use Staple\Validate\BaseValidator;
 use PHPUnit\Framework\TestCase;
+use Staple\Validate\IValidator;
 
 class MyBaseValidator extends BaseValidator
 {
