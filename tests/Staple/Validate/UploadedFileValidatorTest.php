@@ -37,9 +37,4 @@ class UploadedFileValidatorTest extends TestCase
 
         $this->assertEquals(['text/javascript'], $validator->getMimeCheck());
     }
-
-    public function testCheck()
-    {
-        $this->markTestIncomplete();
-    }
 }
