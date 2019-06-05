@@ -27,7 +27,7 @@ namespace Staple\Email;
 use Staple\Config;
 use Staple\Exception\EmailException;
 
-class MailAdapter implements EmailAdapter
+class EmailAdapter implements IEmailAdapter
 {
 	/**
 	 * Whether or not to send email as HTML. Defaults to true.
@@ -76,6 +76,10 @@ class MailAdapter implements EmailAdapter
 	 */
 	protected $attachments = [];
 
+	/**
+	 * EmailAdapter constructor.
+	 * @throws \Staple\Exception\ConfigurationException
+	 */
 	public function __construct()
 	{
 		try
@@ -96,7 +100,7 @@ class MailAdapter implements EmailAdapter
 		catch(EmailException $e) {}	//Ignore invalid emails on object creation.
 	}
 
-	public function send()
+	public function send(): bool
 	{
 		// TODO: Implement send() method.
 
@@ -218,11 +222,12 @@ class MailAdapter implements EmailAdapter
 
 	/**
 	 * Add an email to the list of to email addresses.
-	 * @param $to
+	 * @param string $to
+	 * @param string $name
 	 * @return $this
 	 * @throws EmailException
 	 */
-	public function addTo($to)
+	public function addTo($to, $name = null)
 	{
 		if(Email::checkEmailFormat($to))
 		{
@@ -239,11 +244,11 @@ class MailAdapter implements EmailAdapter
 
 	/**
 	 * Set the $to array of the object.
-	 * @param $to
+	 * @param array $to
 	 * @return $this
 	 * @throws EmailException
 	 */
-	public function setTo($to)
+	public function setTo(array $to)
 	{
 		if(is_array($to))
 		{
@@ -267,11 +272,12 @@ class MailAdapter implements EmailAdapter
 
 	/**
 	 * Add and email to the CC list of emails
-	 * @param $cc
+	 * @param string $cc
+	 * @param string|null $name
 	 * @return $this
 	 * @throws EmailException
 	 */
-	public function addCc($cc)
+	public function addCc($cc, $name = null)
 	{
 		if(Email::checkEmailFormat($cc))
 		{
@@ -292,7 +298,7 @@ class MailAdapter implements EmailAdapter
 	 * @return $this
 	 * @throws EmailException
 	 */
-	public function setCc($cc)
+	public function setCc(array $cc)
 	{
 		if(is_array($cc))
 		{
@@ -316,11 +322,12 @@ class MailAdapter implements EmailAdapter
 
 	/**
 	 * Add an email to the BCC list of emails
-	 * @param $bcc
+	 * @param string $bcc
+	 * @param string|null $name
 	 * @return $this
 	 * @throws EmailException
 	 */
-	public function addBcc($bcc)
+	public function addBcc($bcc, $name = null)
 	{
 		if(Email::checkEmailFormat($bcc))
 		{
@@ -341,7 +348,7 @@ class MailAdapter implements EmailAdapter
 	 * @return $this
 	 * @throws EmailException
 	 */
-	public function setBcc($bcc)
+	public function setBcc(array $bcc)
 	{
 		if(is_array($bcc))
 		{

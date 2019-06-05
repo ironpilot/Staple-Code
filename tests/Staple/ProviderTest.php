@@ -81,6 +81,12 @@ class ProviderTest extends TestCase
 		Auth::get()->clearAuth();
 	}
 
+	/**
+	 * @test
+	 * @throws AuthException
+	 * @throws PageNotFoundException
+	 * @throws RoutingException
+	 */
 	public function testRouting()
 	{
 		//Text Route
@@ -103,6 +109,12 @@ class ProviderTest extends TestCase
 		$this->assertEquals('{"make":"Honda","model":"Accord"}', $jsonBuffer);
 	}
 
+	/**
+	 * @test
+	 * @throws AuthException
+	 * @throws PageNotFoundException
+	 * @throws RoutingException
+	 */
 	public function testRouteNotFound()
 	{
 		$this->expectException(PageNotFoundException::class);
@@ -111,6 +123,12 @@ class ProviderTest extends TestCase
 		Route::create(self::ROUTE_JSON)->execute();
 	}
 
+	/**
+	 * @test
+	 * @throws AuthException
+	 * @throws PageNotFoundException
+	 * @throws RoutingException
+	 */
 	public function testDifferentReturnForDifferentMethods()
 	{
 		//Get Route
@@ -144,6 +162,12 @@ class ProviderTest extends TestCase
 		$this->assertEquals('Some Data', $textBuffer);
 	}
 
+	/**
+	 * @test
+	 * @throws AuthException
+	 * @throws PageNotFoundException
+	 * @throws RoutingException
+	 */
 	public function testOptions()
 	{
 		//OPTIONS Route
@@ -157,6 +181,12 @@ class ProviderTest extends TestCase
 		$this->assertEquals('', $textBuffer);
 	}
 
+	/**
+	 * @test
+	 * @throws AuthException
+	 * @throws PageNotFoundException
+	 * @throws RoutingException
+	 */
 	public function testOptionsThrowsExceptionOnMissingOptionsMethod()
 	{
 		//POST Route
@@ -165,6 +195,12 @@ class ProviderTest extends TestCase
 		Route::create(self::ROUTE_JSON)->execute();
 	}
 
+	/**
+	 * @test
+	 * @throws AuthException
+	 * @throws PageNotFoundException
+	 * @throws RoutingException
+	 */
 	public function testAccessingProtectedEndpointWithoutAuthReturnsNotAuthorized()
 	{
 		//Get Route
@@ -174,6 +210,12 @@ class ProviderTest extends TestCase
 		$route->execute();
 	}
 
+	/**
+	 * @test
+	 * @throws AuthException
+	 * @throws PageNotFoundException
+	 * @throws RoutingException
+	 */
 	public function testAuthenticatedRoutingWithMethodProtection()
 	{
 		//Setup Auth Object

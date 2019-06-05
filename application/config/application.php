@@ -102,7 +102,7 @@ return [
 		//'html' 		=> true,
 
 		//PHPMailer adapter
-		'adapter'	=> 'Staple\Email\PHPMailerEmailAdapter',
+		'adapter'	=> 'Staple\Email\PhpMailerEmailAdapter',
 
 		//SendGrid Email Adapter
 		//'adapter'	=> 'Staple\Email\SendGridEmailAdapter',

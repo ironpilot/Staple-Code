@@ -40,7 +40,6 @@ class Alias
 		'Image'							=>	'\\Staple\\Image',
 		'Layout'						=>	'\\Staple\\Layout',
 		'Link'							=>	'\\Staple\\Link',
-		'Mail'							=>	'\\Staple\\Mail',
 		'Main'							=>	'\\Staple\\Main',
 		'Model'							=>	'\\Staple\\Model',
 		'Pager'							=>	'\\Staple\\Pager',
@@ -149,6 +148,10 @@ class Alias
 
 		//Controller Classes
 		'RestfulController'			=>	'\\Staple\\Controller\RestfulController',
+
+		//Email Classes
+		'Email'							=>	'\\Staple\\Email\\Email',
+		'SendGridEmailAdapter'			=> '\\Staple\\Email\\SendGridEmailAdapter',
 	);
 	
 	/**

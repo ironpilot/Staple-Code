@@ -1,6 +1,6 @@
 <?php
 /**
- * MockMailAdapter for testing PHP mail() function email adapter.
+ * An exception class to handle email errors.
  *
  * @author Ironpilot
  * @copyright Copyright (c) 2011, STAPLE CODE
@@ -19,25 +19,10 @@
  *
  * You should have received a copy of the GNU Lesser General Public License
  * along with the STAPLE Framework.  If not, see <http://www.gnu.org/licenses/>.
- *
  */
 
-namespace Staple\Tests;
+namespace Staple\Exception;
 
-use Staple\Email\IEmailAdapter;
-use Staple\Email\EmailAdapter;
-
-class MockMailAdapter extends EmailAdapter implements IEmailAdapter
+class EmailException extends \Exception
 {
-	/**
-	 * @param $to
-	 * @param $subject
-	 * @param $body
-	 * @param $headers
-	 * @return bool
-	 */
-	protected function performSend($to, $subject, $body, $headers)
-	{
-		return true;
-	}
 }

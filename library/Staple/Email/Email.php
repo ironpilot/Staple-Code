@@ -31,12 +31,13 @@ namespace Staple\Email;
 
 use \Exception;
 use Staple\Config;
+use Staple\Exception\ConfigurationException;
 use Staple\Exception\EmailException;
 use Staple\View;
 
 class Email
 {
-	const ADAPTER_DEFAULT = 'Staple\Email\MailAdapter';
+	const ADAPTER_DEFAULT = 'Staple\Email\EmailAdapter';
 	const ADAPTER_PHPMAILER = 'Staple\Email\PhpMailerAdapter';
 	const ADAPTER_SENDGRID = 'Staple\Email\SendGridEmailAdapter';
 
@@ -65,13 +66,15 @@ class Email
 	protected $manyEmails = false;
 	/**
 	 * The email adapter to send email.
-	 * @var EmailAdapter
+	 * @var IEmailAdapter
 	 */
 	protected $emailAdapter;
-	
+
 	/**
 	 * Default constructor. Accepts an optional email adapter.
 	 * @param string $adapter
+	 * @throws EmailException
+	 * @throws ConfigurationException
 	 */
 	public function __construct($adapter = self::ADAPTER_DEFAULT)
 	{
@@ -124,6 +127,8 @@ class Email
 	 * @param array $bcc
 	 * @param string $adapter
 	 * @return $this
+	 * @throws EmailException
+	 * @throws ConfigurationException
 	 */
 	public static function create($to = NULL, $from = NULL, array $cc = array(), array $bcc = array(), $adapter = self::ADAPTER_DEFAULT)
 	{
@@ -186,6 +191,7 @@ class Email
 	 * @param array $cc
 	 * @param array $bcc
 	 * @return boolean
+	 * @throws EmailException
 	 */
 	public function email($to = NULL, $subject = NULL, $body = NULL, $from = NULL, array $cc = array(), array $bcc = array())
 	{
@@ -309,17 +315,18 @@ class Email
 
 	/**
 	 * Add an email to the To list
-	 * @param $to
+	 * @param string $to
+	 * @param string|null $name
 	 * @return $this
-	 * @throws Exception
+	 * @throws EmailException
 	 */
-	public function addTo($to)
+	public function addTo($to, $name = null)
 	{
 		if(is_numeric($to))
 		{
 			throw new EmailException('To must be a string.');
 		}
-		$this->emailAdapter->addTo($to);
+		$this->emailAdapter->addTo($to, $name);
 		return $this;
 	}
 
@@ -393,7 +400,7 @@ class Email
 	 * @param string $from
 	 * @param string $name
 	 * @return $this
-	 * @throws Exception
+	 * @throws EmailException
 	 */
 	public function setFrom($from,$name = NULL)
 	{
@@ -561,7 +568,7 @@ class Email
 	}
 
 	/**
-	 * @return EmailAdapter
+	 * @return IEmailAdapter
 	 */
 	public function getEmailAdapter()
 	{
@@ -569,10 +576,10 @@ class Email
 	}
 
 	/**
-	 * @param EmailAdapter $emailAdapter
+	 * @param IEmailAdapter $emailAdapter
 	 * @return $this
 	 */
-	public function setEmailAdapter(EmailAdapter $emailAdapter)
+	public function setEmailAdapter(IEmailAdapter $emailAdapter)
 	{
 		$this->emailAdapter = $emailAdapter;
 		return $this;
@@ -581,14 +588,14 @@ class Email
 	/**
 	 * Creates an instance of the email adapter object.
 	 * @param $adapter
-	 * @return EmailAdapter
+	 * @return IEmailAdapter
 	 * @throws EmailException
 	 */
 	private function createEmailAdapter($adapter)
 	{
 		if(class_exists($adapter)) {
 			$object = new $adapter();
-			if($object instanceof EmailAdapter) {
+			if($object instanceof IEmailAdapter) {
 				$this->setEmailAdapter($object);
 				return $object;
 			} else {
@@ -620,7 +627,7 @@ class Email
 	 */
 	public function isReady()
 	{
-		if(count($this->getTo()) == 0)
+		if(count($this->getTo()) === 0)
 		{
 			return false;
 		}
@@ -630,12 +637,12 @@ class Email
 			return false;
 		}
 
-		if(strlen($this->getSubject()) == 0)
+		if(strlen($this->getSubject()) === 0)
 		{
 			return false;
 		}
 
-		if(strlen($this->getBody()) == 0)
+		if(strlen($this->getBody()) === 0)
 		{
 			return false;
 		}
