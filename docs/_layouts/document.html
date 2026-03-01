@@ -16,33 +16,36 @@ layout: default
   </div>
 </div>
 
-<div class="oss docs main ui vertical segment">
-  <div class="ui dividing left rail">
-    <div class="ui vertical following fluid text menu">
-      {% assign sorted_cats = site.categories %}
-      {% for category in sorted_cats %}
-      {% assign sorted_posts = category[1] | sort  %}
-      <div class="title">
-        {{ category[0] | capitalize }}
-      </div>
-      <div class="content menu">
-        {% for post in sorted_posts %}
-       	<div class="item"><a href="{{ site.url }}{{ site.baseurl }}{{  post.url }}">{{  post.title }}</a></div>
-        {% endfor %}
-      </div>
-      {% endfor %}
+<div class="main-container">
+    <div class="ui dividing left">
+        <div class="ui vertical following fluid text menu">
+            {% assign sorted_cats = site.categories %}
+            {% for category in sorted_cats %}
+            {% assign sorted_posts = category[1] | sort  %}
+            <h3 class="title">
+                {{ category[0] | capitalize }}
+            </h3>
+            <div class="content menu">
+                {% for post in sorted_posts %}
+                <div class="item"><a href="{{ site.url }}{{ site.baseurl }}{{  post.url }}">{{  post.title }}</a></div>
+                {% endfor %}
+            </div>
+            {% endfor %}
+        </div>
     </div>
-  </div>
 
-  {% if post.title %}
-  <h2 class="ui header">{{ post.title }}</h2>
-  <div class="horizontal divider"></div>
-  {% endif %}
+    <div class="oss docs main ui vertical segment">
 
-  <div class="toc">
+      {% if post.title %}
+      <h2 class="ui header">{{ post.title }}</h2>
+      <div class="horizontal divider"></div>
+      {% endif %}
 
-  </div>
+      <div class="toc">
 
-  {{ content }}
+      </div>
 
+      {{ content }}
+
+    </div>
 </div>

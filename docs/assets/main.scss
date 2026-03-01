@@ -78,3 +78,34 @@ footer {
     }
   }
 }
+
+.main-container {
+  display: flex;
+  flex-direction: row;
+  margin-top: 100px;
+
+  .left .title:before {
+    color: rgb(239.9245283019, 176.0754716981, 176.0754716981);
+    content: "§";
+    margin-left: -2.4rem;
+    padding-right: 1.4rem;
+  }
+}
+
+.ui.segment {
+  position:inherit;
+}
+
+.oss.docs.main.segment {
+  margin-top: 0;
+}
+
+.ui.left {
+  margin-left: 50px;
+  padding-top: 100px;
+  width:200px;
+  position: static;
+  border-right: 1px solid rgba(34,36,38,.15);
+  margin-right: 35px;
+}
+

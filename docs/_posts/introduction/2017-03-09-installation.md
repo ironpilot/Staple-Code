@@ -13,7 +13,7 @@ to start serving a website.
 
 You will need a few things for the server to be able to process your site:
 
- - PHP 7.1 or higher.
+ - PHP 8.2 or higher.
  - A URL rewrite module.
  
 You should also have a few PHP extensions enabled, if you want to use those features:

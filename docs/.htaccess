@@ -1,0 +1,6 @@
+RewriteEngine on
+# Prevent rewrite loop for files that exist
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteCond %{REQUEST_FILENAME} !-d
+# Rewrite all requests to the _site directory
+RewriteRule ^(.*)$ /docs/$1 [L]
