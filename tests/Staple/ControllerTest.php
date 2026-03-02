@@ -23,9 +23,11 @@
 namespace Staple\Tests;
 
 use PHPUnit\Framework\TestCase;
+use ReflectionException;
 use Staple\Auth\Auth;
 use Staple\Auth\AuthAdapter;
 use Staple\Auth\AuthRoute;
+use Staple\Exception\NotAuthorizedException;
 use Staple\Request;
 use Staple\Route;
 use \Staple\Exception\AuthException;
@@ -148,10 +150,17 @@ class ControllerTest extends TestCase
 		Auth::get()->clearAuth();
 	}
 
+	protected function tearDown(): void
+	{
+		\Staple\Main::get()->restoreErrorHandlers();
+		parent::tearDown();
+	}
+
 	/**
 	 * @throws AuthException
 	 * @throws PageNotFoundException
 	 * @throws RoutingException
+	 * @throws ReflectionException
 	 */
 	public function testRouting()
 	{
@@ -173,6 +182,8 @@ class ControllerTest extends TestCase
 	 * @throws RoutingException
 	 * @throws SessionException
 	 * @throws SystemException
+	 * @throws ReflectionException
+	 * @throws NotAuthorizedException
 	 */
 	public function testAuthenticatedRouting()
 	{
@@ -213,6 +224,8 @@ class ControllerTest extends TestCase
 	 * @throws RoutingException
 	 * @throws SessionException
 	 * @throws SystemException
+	 * @throws ReflectionException
+	 * @throws NotAuthorizedException
 	 */
 	public function testAuthenticatedRoutingWithGlobalControllerProtection()
 	{
@@ -259,6 +272,7 @@ class ControllerTest extends TestCase
 	 * @throws AuthException
 	 * @throws PageNotFoundException
 	 * @throws RoutingException
+	 * @throws ReflectionException
 	 */
 	public function testIndexNotRequired()
 	{
@@ -280,7 +294,7 @@ class ControllerTest extends TestCase
 		}
 		catch (PageNotFoundException $e)
 		{
-			$this->assertInstanceOf('\Staple\Exception\PageNotFoundException', $e);
+			$this->assertEquals('Page Not Found', $e->getMessage());
 		}
 
 		//Route 3
@@ -291,7 +305,7 @@ class ControllerTest extends TestCase
 		}
 		catch (PageNotFoundException $e)
 		{
-			$this->assertInstanceOf('\Staple\Exception\PageNotFoundException', $e);
+			$this->assertEquals('Page Not Found', $e->getMessage());
 		}
 
 		$this->assertEquals(self::NOINDEX_ROUTE1_RESULT, $route1Result);

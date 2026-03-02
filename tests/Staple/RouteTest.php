@@ -26,6 +26,12 @@ class RouteTest extends TestCase
 	const UNDERSCORE_ROUTE1_RESULT = 'Underscored Route';
 	const UNDERSCORE_ROUTE2_RESULT = 'Underscored RouteunderScore_in_Param';
 
+	protected function tearDown(): void
+	{
+		\Staple\Main::get()->restoreErrorHandlers();
+		parent::tearDown();
+	}
+
 	/**
 	 * @param null $route
 	 * @return Route

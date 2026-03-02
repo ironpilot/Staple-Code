@@ -9,4 +9,9 @@
             <directory suffix=".php">../library/Staple/</directory>
         </whitelist>
     </filter>
+    <source ignoreIndirectDeprecations="true" restrictNotices="true" restrictWarnings="true">
+        <include>
+            <directory>../library/Staple</directory>
+        </include>
+    </source>
 </phpunit>

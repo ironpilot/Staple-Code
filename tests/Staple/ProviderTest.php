@@ -96,6 +96,12 @@ class ProviderTest extends TestCase
 		Auth::get()->clearAuth();
 	}
 
+	protected function tearDown(): void
+	{
+		\Staple\Main::get()->restoreErrorHandlers();
+		parent::tearDown();
+	}
+
 	public function testRouting()
 	{
 		//Text Route

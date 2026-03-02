@@ -142,9 +142,9 @@ abstract class Query implements IQuery
 
 	/**
 	 * Get the schema string
-	 * @return string
+	 * @return string|null
 	 */
-	public function getSchema(): string
+	public function getSchema(): ?string
 	{
 		return $this->schema;
 	}

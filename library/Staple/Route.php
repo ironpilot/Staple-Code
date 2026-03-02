@@ -115,7 +115,7 @@ class Route
 	{
 		//Check for sub-path configuration.
 		$publicLocation = Config::getValue('application', 'public_location');
-		if(strlen($publicLocation) && str_starts_with($route, $publicLocation))
+		if(is_string($route) && strlen($publicLocation) && str_starts_with($route, $publicLocation))
 		{
 			$route = substr($route, strlen($publicLocation));
 		}
