@@ -23,11 +23,11 @@ class OAuthAdapter implements AuthAdapter
 	private mixed $userInfo;
 
 	/**
-	 * @param Request $request
+	 * @param Request $credentials
 	 * @return bool
 	 * @throws ConfigurationException
 	 */
-	public function getAuth(mixed $request): bool
+	public function getAuth(mixed $credentials): bool
 	{
 		try {
 			$verifier = new JWTVerifier([
@@ -35,7 +35,7 @@ class OAuthAdapter implements AuthAdapter
 				'valid_audiences' => Config::getValue('oauth','valid_audiences'),
 				'authorized_iss' => Config::getValue('oauth','authorized_iss'),
 			]);
-			$authHeader = $request->findHeader(self::AUTHORIZATION_HEADER);
+			$authHeader = $credentials->findHeader(self::AUTHORIZATION_HEADER);
 			$token = trim(str_ireplace('Bearer', '', $authHeader));
 
 			$this->userInfo = $verifier->verifyAndDecode($token);

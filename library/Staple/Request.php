@@ -23,7 +23,6 @@
 namespace Staple;
 
 use Exception;
-use JetBrains\PhpStorm\NoReturn;
 
 class Request
 {
@@ -220,8 +219,7 @@ class Request
 			}
 		}
 	}
-	
-	#[NoReturn]
+
 	public static function Redirect(Route $route, array $get = array()): void
 	{
 		$to = (string)$route;
